@@ -1,4 +1,4 @@
-import type { AccentKey } from '../types'
+import type { AccentKey } from './types'
 
 export const ACCENTS: Record<AccentKey, { color: string; glow: string; label: string }> = {
   lime: { color: '#4ce97f', glow: 'rgba(76, 233, 127, 0.30)', label: 'Lime' },

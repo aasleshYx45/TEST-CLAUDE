@@ -12,7 +12,9 @@
     "smoke": "node scripts/smoke.mjs",
     "shots": "node scripts/shots.mjs",
     "icons": "node scripts/gen-icons.mjs",
-    "build:single": "node scripts/build-artifact.mjs"
+    "build:single": "node scripts/build-artifact.mjs",
+    "mobile": "npm --prefix mobile run start",
+    "mobile:check": "node scripts/mobile-check.mjs"
   },
   "dependencies": {
     "react": "^19.1.1",

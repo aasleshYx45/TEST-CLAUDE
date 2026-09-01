@@ -5,3 +5,7 @@ dist-ssr
 .DS_Store
 .vite
 shots
+
+mobile/node_modules
+mobile/dist-web
+mobile/.expo

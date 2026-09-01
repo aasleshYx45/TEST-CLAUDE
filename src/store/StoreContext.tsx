@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useMemo, useReducer } from 'react
 import type { ReactNode } from 'react'
 import type { Action } from './store'
 import { loadState, reducer, saveState } from './store'
-import type { AppState } from '../types'
+import type { AppState } from '../../shared/types'
 
 type StoreValue = { state: AppState; dispatch: React.Dispatch<Action> }
 

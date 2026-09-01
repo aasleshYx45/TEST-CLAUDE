@@ -3,10 +3,10 @@ import { Sheet } from '../components/Sheet'
 import { Switch } from '../components/Switch'
 import { useStore } from '../store/StoreContext'
 import { useToast } from '../components/Toast'
-import { ACCENTS, ACCENT_KEYS } from '../lib/accents'
-import { overall } from '../lib/attendance'
+import { ACCENTS, ACCENT_KEYS } from '../../shared/accents'
+import { overall } from '../../shared/attendance'
 import { tap } from '../lib/haptics'
-import type { AccentKey, AppState } from '../types'
+import type { AccentKey, AppState } from '../../shared/types'
 import { Download, Trash, Upload } from '../components/icons'
 
 const REQUIREMENTS = [60, 65, 70, 75, 80, 85]

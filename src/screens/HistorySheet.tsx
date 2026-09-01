@@ -1,12 +1,12 @@
 import { Sheet } from '../components/Sheet'
 import { useStore } from '../store/StoreContext'
 import { useToast } from '../components/Toast'
-import { formatRelative } from '../lib/date'
+import { formatRelative } from '../../shared/date'
 import { tap } from '../lib/haptics'
 import type { CSSProperties } from 'react'
-import type { LogEntry } from '../types'
+import type { LogEntry } from '../../shared/types'
 import { Ban, Check, Close, Pencil, Plus, Trash, Undo } from '../components/icons'
-import { DANGER, WARN } from '../lib/accents'
+import { DANGER, WARN } from '../../shared/accents'
 import { EmptyState } from '../components/EmptyState'
 
 function glyphFor(entry: LogEntry) {

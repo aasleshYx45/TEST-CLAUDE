@@ -9,7 +9,7 @@ import { ToastProvider } from './components/Toast'
 import { StoreProvider, useStore } from './store/StoreContext'
 import { tap } from './lib/haptics'
 import { Cap, Grid } from './components/icons'
-import type { ClassSlot, Subject } from './types'
+import type { ClassSlot, Subject } from '../shared/types'
 
 type Tab = 'attendance' | 'timetable'
 

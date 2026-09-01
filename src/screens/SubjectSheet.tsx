@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Sheet } from '../components/Sheet'
 import { Stepper } from '../components/Stepper'
-import { ACCENTS, ACCENT_KEYS } from '../lib/accents'
+import { ACCENTS, ACCENT_KEYS } from '../../shared/accents'
 import { tap } from '../lib/haptics'
 import { useStore } from '../store/StoreContext'
 import { useToast } from '../components/Toast'
-import type { AccentKey, Subject } from '../types'
+import type { AccentKey, Subject } from '../../shared/types'
 import { Trash } from '../components/icons'
 
 type Props = { open: boolean; subject: Subject | null; onClose: () => void }

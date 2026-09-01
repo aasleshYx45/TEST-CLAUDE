@@ -1,14 +1,14 @@
 import { useMemo, useState } from 'react'
 import { useStore } from '../store/StoreContext'
-import { overall, percent, total } from '../lib/attendance'
-import { formatHeaderDate, formatUpdated } from '../lib/date'
+import { overall, percent, total } from '../../shared/attendance'
+import { formatHeaderDate, formatUpdated } from '../../shared/date'
 import { tap } from '../lib/haptics'
 import { SubjectCard } from '../components/SubjectCard'
 import { EmptyState } from '../components/EmptyState'
 import { AnimatedNumber } from '../components/AnimatedNumber'
 import { useToast } from '../components/Toast'
 import { Cap, Gear, History, Plus } from '../components/icons'
-import type { Subject } from '../types'
+import type { Subject } from '../../shared/types'
 
 type Filter = 'all' | 'risk' | 'safe'
 

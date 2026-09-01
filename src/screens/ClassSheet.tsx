@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 import type { CSSProperties } from 'react'
 import { Sheet } from '../components/Sheet'
-import { ACCENTS } from '../lib/accents'
-import { DAY_SHORT, addMinutes, toMinutes, weekOrder } from '../lib/date'
+import { ACCENTS } from '../../shared/accents'
+import { DAY_SHORT, addMinutes, toMinutes, weekOrder } from '../../shared/date'
 import { tap } from '../lib/haptics'
 import { useStore } from '../store/StoreContext'
 import { useToast } from '../components/Toast'
-import type { ClassSlot } from '../types'
+import type { ClassSlot } from '../../shared/types'
 import { Trash } from '../components/icons'
 
 type Props = {

@@ -1,7 +1,7 @@
 import { strict as assert } from 'node:assert'
 import { test } from 'node:test'
-import { canSkip, mustAttend, overall, percent, standing } from '../src/lib/attendance.ts'
-import type { Subject } from '../src/types.ts'
+import { canSkip, mustAttend, overall, percent, standing } from '../shared/attendance.ts'
+import type { Subject } from '../shared/types.ts'
 
 const make = (attended: number, missed: number, requirement = 75): Subject => ({
   id: 'x',

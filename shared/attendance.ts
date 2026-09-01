@@ -1,4 +1,4 @@
-import type { Subject } from '../types'
+import type { Subject } from './types'
 
 export const total = (s: Subject) => s.attended + s.missed
 
