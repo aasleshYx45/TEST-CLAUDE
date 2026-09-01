@@ -133,10 +133,22 @@ ul {
 /* On anything wider than a phone the app keeps its mobile format, presented
    as a floating device against the ambient field. */
 @media (min-width: 760px) {
+  /* Centre the device in the viewport, so leftover space is split evenly rather
+     than all pooling below it. */
+  #root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 0;
+  }
+
   .shell {
-    height: min(880px, calc(100vh - 64px));
-    height: min(880px, calc(100dvh - 64px));
-    margin: 32px auto;
+    /* Cap by the frame's own proportions — roughly 2.1x its width — so a tall
+       screen doesn't stretch it into a ribbon, while an iPad still fills most
+       of its height instead of stopping at a fixed 880px. */
+    height: min(966px, calc(100vh - 64px));
+    height: min(966px, calc(100dvh - 64px));
+    margin: 0 auto;
     border-radius: 42px;
     border: 1px solid var(--line);
     box-shadow:
