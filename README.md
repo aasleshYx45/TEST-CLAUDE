@@ -69,6 +69,20 @@ npm run shots      # regenerate screenshots into shots/
 at `http://localhost:4173`. Set `BASE_URL` or `CHROMIUM_PATH` to point them
 elsewhere.
 
+## Single-file build
+
+```bash
+npm run build:single -- attendly.html
+```
+
+Inlines the CSS and JS into one self-contained HTML file you can host anywhere
+or open directly. It builds with `VITE_SW=off`, since a lone HTML file has no
+`sw.js` beside it to register. `scripts/verify-artifact.mjs` checks that the
+result runs on its own with no console errors.
+
+Note that the browser download in **Settings → Export** relies on a blob link,
+which some sandboxed hosts block; it works when the app is served normally.
+
 ## Layout
 
 ```
