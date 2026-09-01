@@ -108,7 +108,8 @@ ul {
   width: 100%;
   max-width: var(--shell-w);
   margin: 0 auto;
-  min-height: 100dvh;
+  height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   background: linear-gradient(180deg, #101318 0%, var(--bg-base) 34%, var(--bg-base) 100%);
@@ -117,6 +118,7 @@ ul {
 
 .shell__scroll {
   flex: 1;
+  min-height: 0;
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
@@ -132,8 +134,8 @@ ul {
    as a floating device against the ambient field. */
 @media (min-width: 760px) {
   .shell {
-    min-height: min(880px, calc(100dvh - 64px));
-    max-height: min(880px, calc(100dvh - 64px));
+    height: min(880px, calc(100vh - 64px));
+    height: min(880px, calc(100dvh - 64px));
     margin: 32px auto;
     border-radius: 42px;
     border: 1px solid var(--line);
