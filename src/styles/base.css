@@ -1,0 +1,156 @@
+@import './tokens.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-void);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overscroll-behavior-y: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  border: 0;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+/* Numeric readouts should never jitter as digits change. */
+.tnum {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+/* ---------- Ambient backdrop ---------- */
+
+.ambient {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 80% at 50% -10%, var(--accent-wash), transparent 60%),
+    radial-gradient(100% 60% at 100% 100%, rgba(255, 255, 255, 0.04), transparent 70%),
+    var(--bg-void);
+}
+
+.ambient::after {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 3px 3px;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+}
+
+/* ---------- App shell ---------- */
+
+.shell {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--shell-w);
+  margin: 0 auto;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #101318 0%, var(--bg-base) 34%, var(--bg-base) 100%);
+  isolation: isolate;
+}
+
+.shell__scroll {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 0 18px calc(var(--nav-h) + 40px + var(--safe-bottom));
+}
+
+.shell__scroll::-webkit-scrollbar {
+  width: 0;
+}
+
+/* On anything wider than a phone the app keeps its mobile format, presented
+   as a floating device against the ambient field. */
+@media (min-width: 760px) {
+  .shell {
+    min-height: min(880px, calc(100dvh - 64px));
+    max-height: min(880px, calc(100dvh - 64px));
+    margin: 32px auto;
+    border-radius: 42px;
+    border: 1px solid var(--line);
+    box-shadow:
+      0 60px 120px -40px rgba(0, 0, 0, 0.9),
+      0 0 0 10px rgba(255, 255, 255, 0.018),
+      inset 0 1px 0 rgba(255, 255, 255, 0.07);
+    overflow: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

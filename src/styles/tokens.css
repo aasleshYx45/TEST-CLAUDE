@@ -1,0 +1,106 @@
+/* ============================================================
+   Attendly — design tokens
+   Dark-first OLED palette, one accent family swapped at runtime.
+   ============================================================ */
+
+:root {
+  /* Surfaces: near-black base with progressively lighter glass layers */
+  --bg-void: #050608;
+  --bg-base: #0a0b0e;
+  --surface-1: rgba(255, 255, 255, 0.035);
+  --surface-2: rgba(255, 255, 255, 0.055);
+  --surface-3: rgba(255, 255, 255, 0.085);
+  --surface-solid: #14161b;
+
+  /* Hairlines */
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.14);
+
+  /* Ink */
+  --ink: #f4f6f8;
+  --ink-soft: #b6bcc6;
+  --ink-muted: #7d848f;
+  --ink-faint: #4e545e;
+
+  /* Accent — overridden per theme by [data-accent] */
+  --accent: #4ce97f;
+  --accent-2: #b4ff5a;
+  --accent-ink: #061109;
+  --accent-glow: rgba(76, 233, 127, 0.32);
+  --accent-wash: rgba(76, 233, 127, 0.12);
+
+  /* Semantics */
+  --warn: #ffc24b;
+  --warn-glow: rgba(255, 194, 75, 0.28);
+  --danger: #ff5f6b;
+  --danger-glow: rgba(255, 95, 107, 0.26);
+
+  /* Type */
+  --font: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Inter,
+    'Helvetica Neue', system-ui, sans-serif;
+
+  /* Radii */
+  --r-sm: 12px;
+  --r-md: 18px;
+  --r-lg: 24px;
+  --r-xl: 30px;
+  --r-pill: 999px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+  --dur-fast: 140ms;
+  --dur: 260ms;
+  --dur-slow: 460ms;
+
+  /* Shell */
+  --shell-w: 460px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --nav-h: 74px;
+
+  color-scheme: dark;
+}
+
+[data-accent='lime'] {
+  --accent: #4ce97f;
+  --accent-2: #b4ff5a;
+  --accent-ink: #061109;
+  --accent-glow: rgba(76, 233, 127, 0.32);
+  --accent-wash: rgba(76, 233, 127, 0.12);
+}
+[data-accent='cyan'] {
+  --accent: #3ad7f5;
+  --accent-2: #79f0d5;
+  --accent-ink: #03151a;
+  --accent-glow: rgba(58, 215, 245, 0.32);
+  --accent-wash: rgba(58, 215, 245, 0.12);
+}
+[data-accent='violet'] {
+  --accent: #a084ff;
+  --accent-2: #e08bff;
+  --accent-ink: #100729;
+  --accent-glow: rgba(160, 132, 255, 0.36);
+  --accent-wash: rgba(160, 132, 255, 0.14);
+}
+[data-accent='amber'] {
+  --accent: #ffb340;
+  --accent-2: #ffe07a;
+  --accent-ink: #1d1002;
+  --accent-glow: rgba(255, 179, 64, 0.32);
+  --accent-wash: rgba(255, 179, 64, 0.13);
+}
+[data-accent='rose'] {
+  --accent: #ff6b8a;
+  --accent-2: #ffa87a;
+  --accent-ink: #200510;
+  --accent-glow: rgba(255, 107, 138, 0.32);
+  --accent-wash: rgba(255, 107, 138, 0.13);
+}
+
+/* Glow is a big part of the look, but it can be dialled down in Settings. */
+[data-glow='off'] {
+  --accent-glow: transparent;
+  --warn-glow: transparent;
+  --danger-glow: transparent;
+}
