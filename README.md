@@ -64,6 +64,7 @@ npm run typecheck    # tsc, web app and shared core
 npm test             # attendance maths unit tests
 npm run smoke        # end-to-end browser test (needs `npm run preview` running)
 npm run shots        # regenerate screenshots into shots/
+npm run pages        # capture every screen into shots/pages/
 npm run mobile:check # drives the Expo app's web build in a browser
 ```
 

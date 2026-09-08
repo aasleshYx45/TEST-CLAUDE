@@ -14,7 +14,8 @@
     "icons": "node scripts/gen-icons.mjs",
     "build:single": "node scripts/build-artifact.mjs",
     "mobile": "npm --prefix mobile run start",
-    "mobile:check": "node scripts/mobile-check.mjs"
+    "mobile:check": "node scripts/mobile-check.mjs",
+    "pages": "node scripts/pages.mjs"
   },
   "dependencies": {
     "react": "^19.1.1",
