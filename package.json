@@ -15,7 +15,8 @@
     "build:single": "node scripts/build-artifact.mjs",
     "mobile": "npm --prefix mobile run start",
     "mobile:check": "node scripts/mobile-check.mjs",
-    "pages": "node scripts/pages.mjs"
+    "pages": "node scripts/pages.mjs",
+    "subpath:check": "node scripts/subpath-check.mjs"
   },
   "dependencies": {
     "react": "^19.1.1",

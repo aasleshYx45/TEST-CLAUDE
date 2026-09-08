@@ -78,6 +78,22 @@ react-native-web — creating a subject, marking a class, checking the numbers.
 at `http://localhost:4173`. Set `BASE_URL` or `CHROMIUM_PATH` to point them
 elsewhere.
 
+## Deploying the web app
+
+`.github/workflows/deploy.yml` builds the app and publishes it to GitHub Pages
+on every push. Turn it on once, under **Settings ▸ Pages ▸ Build and deployment
+▸ Source = GitHub Actions**. After that each push redeploys, and the site lands
+at `https://<user>.github.io/<repo>/`.
+
+The workflow runs `typecheck`, `test` and `build` first, so a broken commit
+fails the job instead of replacing a working site.
+
+Pages serves the app from a subdirectory rather than a domain root, which is
+where relative-path bugs usually surface. `vite.config.ts` sets `base: './'` and
+every asset, the manifest and the service worker are referenced relatively;
+`npm run subpath:check` serves `dist/` under a subpath and confirms nothing
+404s.
+
 ## Single-file build
 
 ```bash

@@ -1,0 +1,52 @@
+name: Deploy web app
+
+on:
+  push:
+    branches:
+      - main
+      - claude/timetable-attendance-app-b7agz8
+  workflow_dispatch:
+
+# Lets the deploy job publish to Pages using the repository's own token.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# A newer push should win rather than queue behind an in-flight deploy.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # Fail before publishing rather than shipping a broken build.
+      - run: npm run typecheck
+      - run: npm test
+
+      - run: npm run build
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
