@@ -123,6 +123,44 @@ if they aren't. From the repo root, `npm run mobile` does the same thing.
 It's a real React Native app, not a web view: native scrolling, modal sheets,
 `expo-haptics` feedback, `react-native-svg` gauges, and AsyncStorage persistence.
 
+## Getting the mobile app onto TestFlight
+
+Everything that can be prepared without your Apple account is in the repo:
+`mobile/eas.json` has the build profiles, `app.json` carries the bundle id
+`com.attendly.app` and declares no non-exempt encryption (so App Store Connect
+stops asking on every upload), and the icon is a 1024x1024 PNG with no alpha
+channel, which the App Store rejects.
+
+What only you can do:
+
+1. **Join the Apple Developer Program** — $99/year, and there is no way around
+   it for TestFlight.
+2. **Create the app in App Store Connect** with the bundle id
+   `com.attendly.app`.
+3. **Sign in and build.** No Mac needed; EAS builds in the cloud:
+   ```bash
+   cd mobile
+   npx eas-cli login          # a free Expo account
+   npx eas-cli build:configure
+   npx eas-cli build --platform ios --profile production
+   ```
+   EAS offers to create and hold the signing certificates for you. Say yes
+   unless you already manage them.
+4. **Upload it:**
+   ```bash
+   npx eas-cli submit --platform ios --latest
+   ```
+5. **In App Store Connect ▸ TestFlight**, wait for processing (usually 5-15
+   minutes), then add testers. Internal testers — up to 100 people on your own
+   team — need no review. External testers need Beta App Review, which is
+   lighter than App Store review but not instant.
+
+For later builds, `production` has `autoIncrement`, so the build number rises
+on its own; bump `version` in `app.json` when you ship a new release.
+
+An Android APK, if you want one to sideload, needs no Apple account at all:
+`npx eas-cli build --platform android --profile preview`.
+
 ## Layout
 
 ```

@@ -16,7 +16,11 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.attendly.app"
+      "bundleIdentifier": "com.attendly.app",
+      "buildNumber": "1",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "package": "com.attendly.app",
