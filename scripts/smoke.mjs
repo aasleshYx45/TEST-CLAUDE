@@ -19,6 +19,21 @@ page.on('console', (m) => m.type() === 'error' && errors.push(m.text()))
 
 await page.goto(BASE, { waitUntil: 'networkidle' })
 
+// 0. With no subjects yet, the timetable's + must not open a class form: a class
+//    belongs to a subject, and that form would offer nothing to pick.
+await page.getByRole('button', { name: 'Timetable' }).click()
+await page.waitForTimeout(400)
+check('empty timetable offers a way to add a subject', await page.getByRole('button', { name: 'Add a subject' }).isVisible())
+await page.getByRole('button', { name: 'Add class' }).click()
+await page.waitForTimeout(500)
+const firstSheet = await page.locator('.sheet__title').innerText()
+check(`timetable + with no subjects opens the subject form (got "${firstSheet}")`, firstSheet === 'New subject')
+check('and shows no day picker', (await page.locator('.sheet .days').count()) === 0)
+await page.getByRole('button', { name: 'Close' }).click()
+await page.waitForTimeout(400)
+await page.getByRole('button', { name: 'Attendance' }).click()
+await page.waitForTimeout(400)
+
 // 1. Create a subject
 await page.getByRole('button', { name: 'Add subject' }).click()
 await page.getByLabel('Subject name').fill('Physics')
@@ -37,9 +52,12 @@ const pct = await page.locator('.ring__pct').first().innerText()
 check(`ring shows 67% (got ${pct})`, pct.trim() === '67%')
 check('standing tells you to attend more', await page.getByText(/Attend next/).first().isVisible())
 
-// 3. Timetable: schedule today's class and mark it present
+// 3. Timetable: with a subject in hand, + now opens the class form as intended
 await page.getByRole('button', { name: 'Timetable' }).click()
 await page.getByRole('button', { name: 'Add class' }).click()
+await page.waitForTimeout(500)
+check('timetable + with a subject opens the class form', (await page.locator('.sheet__title').innerText()) === 'New class')
+check('class form offers the subject to pick', (await page.locator('.sheet .chip').count()) === 1)
 await page.locator('.sheet').getByRole('button', { name: 'Add class' }).click()
 await page.waitForTimeout(400)
 check('class appears on the timetable', await page.getByText('Physics').first().isVisible())

@@ -67,7 +67,16 @@ function Workspace() {
         />
       ) : (
         <TimetableScreen
-          onAddClass={(day) => setClassSheet({ open: true, slot: null, day })}
+          onAddClass={(day) => {
+            // A class has to belong to a subject, so send first-timers to the
+            // subject form rather than a class form with nothing to pick.
+            if (state.subjects.length === 0) {
+              setSubjectSheet({ open: true, subject: null })
+              return
+            }
+            setClassSheet({ open: true, slot: null, day })
+          }}
+          onAddSubject={() => setSubjectSheet({ open: true, subject: null })}
           onEditClass={(slot) => setClassSheet({ open: true, slot, day: slot.day })}
         />
       )}

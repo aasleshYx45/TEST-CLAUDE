@@ -75,6 +75,12 @@ export function ClassSheet({ open, slot, defaultDay, onClose }: Props) {
     <Sheet open={open} title={editing ? 'Edit class' : 'New class'} onClose={onClose}>
       <div className="field">
         <span className="field__label">Subject</span>
+        {state.subjects.length === 0 ? (
+          <p className="row__sub">
+            You have no subjects yet. Add one on the Attendance tab first — every class belongs to a
+            subject.
+          </p>
+        ) : null}
         <div className="chips">
           {state.subjects.map((s) => (
             <button

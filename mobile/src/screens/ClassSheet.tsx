@@ -86,6 +86,12 @@ export function ClassSheet({ open, slot, defaultDay, onClose }: Props) {
     <Sheet open={open} title={editing ? 'Edit class' : 'New class'} onClose={onClose}>
       <View style={styles.field}>
         <Text style={styles.label}>Subject</Text>
+        {state.subjects.length === 0 ? (
+          <Text style={styles.hint}>
+            You have no subjects yet. Add one on the Attendance tab first — every class belongs to a
+            subject.
+          </Text>
+        ) : null}
         <View style={styles.chips}>
           {state.subjects.map((s) => {
             const on = subjectId === s.id
@@ -231,6 +237,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
   },
+  hint: { fontSize: 12.5, color: colors.inkMuted, lineHeight: 18 },
   chips: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
   chip: {
     flexDirection: 'row',

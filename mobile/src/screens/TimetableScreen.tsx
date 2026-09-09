@@ -24,10 +24,11 @@ import { Ban, Check, Clock, Close, Grid, Pin, Plus } from '../components/Icon'
 
 type Props = {
   onAddClass: (day: number) => void
+  onAddSubject: () => void
   onEditClass: (slot: ClassSlot) => void
 }
 
-export function TimetableScreen({ onAddClass, onEditClass }: Props) {
+export function TimetableScreen({ onAddClass, onAddSubject, onEditClass }: Props) {
   const { state, dispatch } = useStore()
   const toast = useToast()
   const insets = useSafeAreaInsets()
@@ -150,7 +151,18 @@ export function TimetableScreen({ onAddClass, onEditClass }: Props) {
           <EmptyState
             glyph={<Grid size={30} color={theme.color} />}
             title="Add a subject first"
-            text="Your timetable is built from your subjects, so create one on the Attendance tab to get started."
+            text="Your timetable is built from your subjects, so start by creating one."
+            action={
+              <Button
+                label="Add a subject"
+                onPress={onAddSubject}
+                variant="primary"
+                gradient={theme.gradient}
+                onAccent={theme.onAccent}
+                icon={<Plus size={16} color={theme.onAccent} />}
+                style={{ paddingHorizontal: 20, height: 44 }}
+              />
+            }
           />
         ) : lessons.length === 0 ? (
           <EmptyState
